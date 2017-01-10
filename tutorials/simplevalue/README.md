@@ -194,20 +194,20 @@ In this section, you will be creating a simple value symbol, much like the curre
     };
     ```
 
-1. Now that we have it defined in the implementation, we need to create the configuration HTML file. Create a file named `sym-simplevalue-config.html` in the same directory as the implementation and presentation files. The naming convention here is sym-SYMBOL_TYPE_NAME-config.html. This is the default name that the symbol framework will look for if the configuration template is not specified in the symbol definition. Like the presentation layer, the configuration layer is basic HTML. In the example below, we define two sections, Text Color and Background Color, and add a color picker custom control, `cs-color-picker`, under each section. `cs-color-picker` is an AngularJS [directive](https://docs.angularjs.org/guide/directive) to add the ability to use the PI Coresight color picker to a custom symbol. `cs-color-picker` has two custom attributes that are used to link it back to the underlying symbol, `property` and `config`. `property` points to a property on the passed in config object. `config` is the config object of the symbol.
+1. Now that we have it defined in the implementation, we need to create the configuration HTML file. Create a file named `sym-simplevalue-config.html` in the same directory as the implementation and presentation files. The naming convention here is sym-SYMBOL_TYPE_NAME-config.html. This is the default name that the symbol framework will look for if the configuration template is not specified in the symbol definition. Like the presentation layer, the configuration layer is basic HTML. In the example below, we define two sections, Text Color and Background Color, and add a color picker custom control, `pv-color-picker`, under each section. `pv-color-picker` is an AngularJS [directive](https://docs.angularjs.org/guide/directive) to add the ability to use the PI Coresight color picker to a custom symbol. `pv-color-picker` has two custom attributes that are used to link it back to the underlying symbol, `property` and `config`. `property` points to a property on the passed in config object. `config` is the config object of the symbol.
 
     ```html
     <div class="c-side-pane t-toolbar">
         <span style="color:#fff; margin-left:15px">Text Color</span>
     </div>
     <div class="config-option-format">
-        <cs-color-picker id="textcolor" ng-model="config.TextColor"></cs-color-picker>
+        <pv-color-picker id="textcolor" ng-model="config.TextColor"></pv-color-picker>
     </div>
     <div class="c-side-pane t-toolbar">
         <span style="color:#fff; margin-left:15px">Background Color</span>
     </div>
     <div class="config-option-format">
-        <cs-color-picker id="backgroundcolor" ng-model="config.BackgroundColor"></cs-color-picker>
+        <pv-color-picker id="backgroundcolor" ng-model="config.BackgroundColor"></pv-color-picker>
     </div>
 
     ```
@@ -256,13 +256,13 @@ In this section, you will be creating a simple value symbol, much like the curre
         <span style="color:#fff; margin-left:15px">Text Color</span>
     </div>
     <div class="config-option-format">
-        <cs-color-picker id="textcolor" ng-model="config.TextColor"></cs-color-picker>
+        <pv-color-picker id="textcolor" ng-model="config.TextColor"></pv-color-picker>
     </div>
     <div class="c-side-pane t-toolbar">
         <span style="color:#fff; margin-left:15px">Background Color</span>
     </div>
     <div class="config-option-format">
-        <cs-color-picker id="backgroundcolor" ng-model="config.BackgroundColor"></cs-color-picker>
+        <pv-color-picker id="backgroundcolor" ng-model="config.BackgroundColor"></pv-color-picker>
     </div>
     <div class="c-side-pane t-toolbar">
         <span style="color:#fff; margin-left:15px">Show Options</span>
