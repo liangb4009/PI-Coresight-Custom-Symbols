@@ -25,7 +25,7 @@ The following example is used to create a PI Coresight symbol that uses [d3.js](
 	    	}
 	    };
 	    CS.symbolCatalog.register(defintion);
-    })(window.Coresight);
+    })(window.PIVisualization);
     ```
 
 1. The next step is to create the HTML template for this symbol. The liquid gauge that we will be using requires a `svg` tag to attach to. So we will create a HTML file in the same directory as our Javascript file and name it `sym-liquidgauge-template.html`. 
@@ -71,7 +71,7 @@ The following example is used to create a PI Coresight symbol that uses [d3.js](
 	    };
 
 	    CS.symbolCatalog.register(defintion);
-	})(window.Coresight);
+	})(window.PIVisualization);
     ```
 1. Next we must include the d3.js library so that our symbol can use it. This code comes from [d3.js](https://github.com/d3/d3/tree/v3.5.17). Copy d3.js from this GitHub repository and place it into INSTALLATION_FOLDER\Scripts\app\editor\symbols\ext\libraries. This will make d3 available to PI Coresight symbols.
 
