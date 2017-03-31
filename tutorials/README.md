@@ -8,3 +8,4 @@ Each section below is used to walkthrough the creation of a specific custom symb
 * [Simple Value Symbol Instructions](/tutorials/simplevalue/)
 * [TimeSeries Chart Instructions](/tutorials/timeserieschart/)
 * [Liquid Gauge (d3) Instructions](/tutorials/liquidgauge/)
+* [PI WebAPI Data Pump](/tutorials/Histogram/)
