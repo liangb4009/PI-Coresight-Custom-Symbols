@@ -1,5 +1,5 @@
 /***************************************************************************
-   Copyright 2016 OSIsoft, LLC.
+   Copyright 2016-2017 OSIsoft, LLC.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -341,4 +341,4 @@
 	// Register this custom symbol definition with PI Coresight
 	CS.symbolCatalog.register(myCustomSymbolDefinition);
 	
-})(window.Coresight);
+})(window.PIVisualization);

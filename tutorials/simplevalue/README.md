@@ -8,7 +8,7 @@ In this section, you will be creating a simple value symbol, much like the curre
 
     ```javascript
     (function (CS) {
-    })(window.Coresight);
+    })(window.PIVisualization);
     ```
 
 1. The first step is to create our visualization object which will be built on later. In this step, you are creating a function as a container for your symbol. The function will be extended via PI Coresight helper functions to add some default behaviors.
@@ -19,7 +19,7 @@ In this section, you will be creating a simple value symbol, much like the curre
         function symbolVis() { }
         CS.deriveVisualizationFromBase(symbolVis);
 
-    })(window.Coresight);
+    })(window.PIVisualization);
     ```
     
 1. Next by creating the symbol definition [Object](https://developer.mozilla.org/en-US/docs/Glossary/Object) that will be used to register the symbol with PI Coresight. Here we use the PI Coresight object passed in to gain access to the symbol catalog. We are starting with passing in the visualization object type, `visObjectType`, which is the function acting as the container object for the symbol. The symbol catalog is the object we use for registering and holding all Coresight symbols. We are creating an empty object and passing that into the register function. Since this is in an IIFE, as soon as the browser executes it, it will run the registration code.
@@ -34,7 +34,7 @@ In this section, you will be creating a simple value symbol, much like the curre
         };
         CS.symbolCatalog.register(definition);
 
-    })(window.Coresight);
+    })(window.PIVisualization);
     ```
 
 1. Let's start by building out the required parts of the new symbol. The `typeName` is the internal name that PI Coresight will use to register this symbol. It must be unique among all PI Coresight symbols. `datasourceBehavior` is used to specify the number of search results that can be used to create this symbol. The options are `None`, `Single`, `Multiple`. `None` is used for static, i.e. not data driven symbols. `Single` is used for a symbol that is based on one PI tag or attribute. `Multiple` is used for a symbol that is based on multiple PI tags, attributes or elements.
@@ -50,7 +50,7 @@ In this section, you will be creating a simple value symbol, much like the curre
             visObjectType: symbolVis
         };
         CS.symbolCatalog.register(definition);
-    })(window.Coresight);
+    })(window.PIVisualization);
     ```
 
 1. Next, let's begin filling in some details about the type of data will be using. Here we have added the `getDefaultConfig` property to the definition object. The `getDefaultConfig` function is used to specify the collection of parameters that should be serialized to the backend database, it returns a JavaScript object. Here we are adding the `DataShape` property to the object returned by `getDefaultConfig`. This property is used to tell the application server the information that this symbol needs to represent the data. In this case, we will be creating a value symbol. We also add the default `Height` and `Width` properties.
@@ -73,7 +73,7 @@ In this section, you will be creating a simple value symbol, much like the curre
             }
         };
         CS.symbolCatalog.register(definition);
-    })(window.Coresight);
+    })(window.PIVisualization);
     ```
 
 1. Next, let's set up the symbol initialization code. This is done on the [prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype) of the function being used as the symbol container, e.g. `symbolVis`. 
@@ -100,7 +100,7 @@ In this section, you will be creating a simple value symbol, much like the curre
         };
 
         CS.symbolCatalog.register(definition);
-    })(window.Coresight);
+    })(window.PIVisualization);
     ```
 
 1. Before going any further with implementation, let's get the initial presentation layer done. First, we will create an HTML file in the same directory as our JavaScript file and name it `sym-simplevalue-template.html`. The naming convention here is sym-SYMBOL_TYPE_NAME-template.html. This is the default name that the symbol framework will look for if the template is not specified in the symbol definition. Add the following to the HTML file. This is just placeholder text until we write the actual presentation layer code.
@@ -194,20 +194,20 @@ In this section, you will be creating a simple value symbol, much like the curre
     };
     ```
 
-1. Now that we have it defined in the implementation, we need to create the configuration HTML file. Create a file named `sym-simplevalue-config.html` in the same directory as the implementation and presentation files. The naming convention here is sym-SYMBOL_TYPE_NAME-config.html. This is the default name that the symbol framework will look for if the configuration template is not specified in the symbol definition. Like the presentation layer, the configuration layer is basic HTML. In the example below, we define two sections, Text Color and Background Color, and add a color picker custom control, `cs-color-picker`, under each section. `cs-color-picker` is an AngularJS [directive](https://docs.angularjs.org/guide/directive) to add the ability to use the PI Coresight color picker to a custom symbol. `cs-color-picker` has two custom attributes that are used to link it back to the underlying symbol, `property` and `config`. `property` points to a property on the passed in config object. `config` is the config object of the symbol.
+1. Now that we have it defined in the implementation, we need to create the configuration HTML file. Create a file named `sym-simplevalue-config.html` in the same directory as the implementation and presentation files. The naming convention here is sym-SYMBOL_TYPE_NAME-config.html. This is the default name that the symbol framework will look for if the configuration template is not specified in the symbol definition. Like the presentation layer, the configuration layer is basic HTML. In the example below, we define two sections, Text Color and Background Color, and add a color picker custom control, `pv-color-picker`, under each section. `pv-color-picker` is an AngularJS [directive](https://docs.angularjs.org/guide/directive) to add the ability to use the PI Coresight color picker to a custom symbol. `pv-color-picker` has two custom attributes that are used to link it back to the underlying symbol, `property` and `config`. `property` points to a property on the passed in config object. `config` is the config object of the symbol.
 
     ```html
     <div class="c-side-pane t-toolbar">
         <span style="color:#fff; margin-left:15px">Text Color</span>
     </div>
     <div class="config-option-format">
-        <cs-color-picker id="textcolor" ng-model="config.TextColor"></cs-color-picker>
+        <pv-color-picker id="textcolor" ng-model="config.TextColor"></pv-color-picker>
     </div>
     <div class="c-side-pane t-toolbar">
         <span style="color:#fff; margin-left:15px">Background Color</span>
     </div>
     <div class="config-option-format">
-        <cs-color-picker id="backgroundcolor" ng-model="config.BackgroundColor"></cs-color-picker>
+        <pv-color-picker id="backgroundcolor" ng-model="config.BackgroundColor"></pv-color-picker>
     </div>
 
     ```
@@ -256,13 +256,13 @@ In this section, you will be creating a simple value symbol, much like the curre
         <span style="color:#fff; margin-left:15px">Text Color</span>
     </div>
     <div class="config-option-format">
-        <cs-color-picker id="textcolor" ng-model="config.TextColor"></cs-color-picker>
+        <pv-color-picker id="textcolor" ng-model="config.TextColor"></pv-color-picker>
     </div>
     <div class="c-side-pane t-toolbar">
         <span style="color:#fff; margin-left:15px">Background Color</span>
     </div>
     <div class="config-option-format">
-        <cs-color-picker id="backgroundcolor" ng-model="config.BackgroundColor"></cs-color-picker>
+        <pv-color-picker id="backgroundcolor" ng-model="config.BackgroundColor"></pv-color-picker>
     </div>
     <div class="c-side-pane t-toolbar">
         <span style="color:#fff; margin-left:15px">Show Options</span>

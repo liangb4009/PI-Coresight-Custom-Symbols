@@ -27,7 +27,7 @@ The following example is used to create a PI Coresight symbol that uses [Highcha
             }
         };
         CS.symbolCatalog.register(defintion);
-    })(window.Coresight);
+    })(window.PIVisualization);
     ```
 
 1. The next step is to create the HTML template for this symbol. The chart that we will be using only needs a `div` tag to attach to. So we will create a HTML file in the same directory as our JavaScript file and name it `sym-timeserieschart-template.html`. We are setting the height and width of this `div` to take up the full space available.
@@ -72,7 +72,7 @@ The following example is used to create a PI Coresight symbol that uses [Highcha
             }
         };
         CS.symbolCatalog.register(defintion);
-    })(window.Coresight);
+    })(window.PIVisualization);
     ```
 
 1. Next we must include the HighCharts library so that our symbol can use it. This code comes from [Highcharts 4.2.3](http://code.highcharts.com/zips/Highcharts-4.2.3.zip). Extract the files from the zip and place highcharts.js into `INSTALLATION_FOLDER\Scripts\app\editor\symbols\ext\libraries`. This will make Highcharts available to PI Coresight symbols.
@@ -343,5 +343,5 @@ The following example is used to create a PI Coresight symbol that uses [Highcha
             }
         };
         CS.symbolCatalog.register(defintion);
-    })(window.Coresight);
+    })(window.PIVisualization);
     ```
